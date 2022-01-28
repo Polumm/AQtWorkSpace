@@ -175,7 +175,7 @@ static QMetaObject::Connection connect(const QObject *sender, const char *signal
 
 ## QListWidget
 
-
+简单，略
 
 ## QTreewidget
 
@@ -185,7 +185,7 @@ QTreewidget样例如下：
 
 所以设计流程如下：
 
-1、设置（set）水平头（HeaderLabel**s**）
+1、设置（set）水平头（Header**Labels**）
 
 ```c++
 //设置水平头
@@ -210,6 +210,8 @@ ui->treeWidget->setHeaderLabels(QStringList()<<"英雄"<<"英雄介绍");
   ```
 
 **注意：载入节点分两步，先==用new构建==QTreeWidgetItem对象，再用方法==将对象载入==**
+
+​		(载入的一定是**QTreeWidgetItem对象**！！！)
 
 2、**载入**根节点(AddTopLevelItem)和子节点(根节点对象->addChild(子节点对象))
 
@@ -252,13 +254,64 @@ Widget::~Widget()
 
 
 
-
-
 ## QTableWidget
 
+1、**设置行数和列数为必要操作！**
+
+```c++
+    ui->tableWidget->setColumnCount(3);
+    ui->tableWidget->setRowCount(11);
+```
+
+2、载入单元格数据的方法为：setItem(行号, 列号, 文本)
+
+```c++
+ ui->tableWidget->setItem(i,col++, new QTableWidgetItem(nameList[i]));
+```
+
+完整代码
+
+```c++
+#include "widget.h"
+#include "ui_widget.h"
+
+Widget::Widget(QWidget *parent)
+    : QWidget(parent)
+    , ui(new Ui::Widget)
+{
+    ui->setupUi(this);
+    //设置行数列数。必要操作！
+    ui->tableWidget->setColumnCount(3);
+    ui->tableWidget->setRowCount(11);
+
+    //设置水平表头
+    ui->tableWidget->setHorizontalHeaderLabels(QStringList()<<"姓名"<<"性别");
+
+    //设置正文
+    QStringList nameList;
+    nameList<< "亚瑟"<< "赵云"<< "张飞"<< "关羽" << "花木兰";
+    QList<QString> sexList;
+    sexList << "男"<< "男"<< "男"<< "男"<< "女";
+
+    for(int i = 0 ; i < 5 ;i ++)
+    {//setItem(行号，列号，文本)
+        int col = 0;
+        ui->tableWidget->setItem(i,col++, new QTableWidgetItem(nameList[i]));
+        ui->tableWidget->setItem(i,col++, new QTableWidgetItem(sexList.at(i)));
+        //int 转 QString
+        ui->tableWidget->setItem(i,col++, new QTableWidgetItem( QString::number(i+18)));
+    }
+}
+
+Widget::~Widget()
+{
+    delete ui;
+}
 
 
+```
 
+![image-20220128204640693](C:/Users/Songchujia/AppData/Roaming/Typora/typora-user-images/image-20220128204640693.png)
 
 
 
