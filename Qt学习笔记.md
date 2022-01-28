@@ -14,6 +14,10 @@
 
 ![image-20220127180021709](https://cdn.jsdelivr.net/gh/Polumm/PicGoo/image-20220127180021709.png)
 
+4.重构如果遇到问题，可以考虑
+
+![image-20220128174543282](https://cdn.jsdelivr.net/gh/Polumm/PicGoo/image-20220128174543282.png)
+
 
 
 ## 窗口
@@ -167,11 +171,186 @@ static QMetaObject::Connection connect(const QObject *sender, const char *signal
 
 
 
+
+
+## QListWidget
+
+
+
+## QTreewidget
+
+QTreewidget样例如下：
+
+![image-20220128180104542](https://cdn.jsdelivr.net/gh/Polumm/PicGoo/image-20220128180104542.png)
+
+所以设计流程如下：
+
+1、设置（set）水平头（HeaderLabel**s**）
+
+```c++
+//设置水平头
+ui->treeWidget->setHeaderLabels(QStringList()<<"英雄"<<"英雄介绍");
+```
+
+注：**QStringList**相当与集成度更高的List\<String\>
+
+- 常规两行，简单声明 + 输入流式初始化
+
+  ```c++
+  QStringList heroL1;
+  heroL1 << "刚被猪" << "前排坦克，能在吸收伤害的同时造成可观的范围输出";
+  ```
+
+  
+
+- 辅助其他对象构造，只负责**快速、格式化打入(分栏效果)**文本的话：
+
+  ```c++
+  ui->treeWidget->setHeaderLabels(QStringList()<<"英雄"<<"英雄介绍");
+  ```
+
+**注意：载入节点分两步，先==用new构建==QTreeWidgetItem对象，再用方法==将对象载入==**
+
+2、**载入**根节点(AddTopLevelItem)和子节点(根节点对象->addChild(子节点对象))
+
+略
+
+完整代码
+
+```c++
+#include "widget.h"
+#include "ui_widget.h"
+
+Widget::Widget(QWidget *parent)
+    : QWidget(parent)
+    , ui(new Ui::Widget)
+{
+    ui->setupUi(this);
+    //设置水平头
+    ui->treeWidget->setHeaderLabels(QStringList()<<"英雄"<<"英雄介绍");
+
+    //载入根节点
+    QTreeWidgetItem* liItem = new QTreeWidgetItem(QStringList()<<"力量");
+    QTreeWidgetItem* minItem = new QTreeWidgetItem(QStringList()<<"敏捷");
+    QTreeWidgetItem* zhiItem = new QTreeWidgetItem(QStringList()<<"智力");
+    ui->treeWidget->addTopLevelItem(liItem);
+    ui->treeWidget->addTopLevelItem(minItem);
+    ui->treeWidget->addTopLevelItem(zhiItem);
+
+    //载入子节点
+    QTreeWidgetItem* hero1 = new QTreeWidgetItem(QStringList()<<"邱诚"<<"是个渣男");
+    liItem->addChild(hero1);
+}
+
+Widget::~Widget()
+{
+    delete ui;
+}
+
+
+```
+
+
+
+
+
+## QTableWidget
+
+
+
+
+
+
+
+##  Text&FileOpen读写
+
+
+
+
+
+
+
 ## Qpainter绘图与展示
 
 
 
-## 文件系统与文件读写
+
+
+
+
+## 文件系统TreeWeidget遍历
+
+
+
+
+
+## CSV联动TableWidget
+
+
+
+
+
+## 数据库表单展示（类似于datagridview in C#）
+
+
+
+
+
+## 教务系统爬虫完善
+
+
+
+
+
+## 我的项目——微博超话数据分析
+
+分析：年龄、性别、地区、活跃程度……
+
+### python
+
+爬虫：**通用 + 聚集**
+
+文件读写csv
+
+python **连接 SQLserver读写数据库或者以csv为媒介读写csv**
+
+python**数据分析可视化**
+
+-  pandas dataframe matplotlib——基本数据的分析与展示
+
+- 能不能用python在**地图绘制**，展示区域数据情况
+
+  类似于：![image-20220127230447366](https://cdn.jsdelivr.net/gh/Polumm/PicGoo/image-20220127230447366.png)
+
+### Qt
+
+表单数据展示：**文件管理系统**打开csv/采用datagridview类似的方法
+
+**Qt连接Sqlserver**展示分析情况
+
+
+
+### git版本控制与Python项目管理
+
+
+
+### 试试endNote写报告？
+
+
+
+## 图形学？
+
+
+
+## 计算器
+
+
+
+## 扫雷
+
+
+
+## 五子棋
 
 
 

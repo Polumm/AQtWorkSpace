@@ -9,20 +9,14 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    digitalclock.cpp \
     main.cpp \
-    mainwindow.cpp \
-    testwidget.cpp
+    widget.cpp
 
 HEADERS += \
-    digitalclock.h \
-    mainwindow.h \
-    testwidget.h
+    widget.h
 
 FORMS += \
-    digitalclock.ui \
-    mainwindow.ui \
-    testwidget.ui
+    widget.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
