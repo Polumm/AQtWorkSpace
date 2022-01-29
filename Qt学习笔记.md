@@ -401,13 +401,17 @@ void Widget::on_pushButton_2_clicked()
 
 ## Qpainter绘图与展示
 
+分号删除，shift + 左括号 tab
 
+painterEvent自动调用
 
-
+ellipse椭圆
 
 
 
 ## 文件系统TreeWeidget遍历
+
+
 
 
 
@@ -433,7 +437,7 @@ void Widget::on_pushButton_2_clicked()
 
 ## 我的项目——微博超话数据分析
 
-分析：年龄、性别、地区、活跃程度……
+分析：评论区情感分析，评论区用户年龄、性别、地区、活跃程度分析……
 
 ### python
 
@@ -512,8 +516,6 @@ python**数据分析可视化**
 
 
 ## 资源文件
-
-
 
 
 
