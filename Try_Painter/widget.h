@@ -17,6 +17,12 @@ public:
 
 //    绘图事件
     void paintEvent(QPaintEvent *);
+    int posX = 0;
+    void on_pushButton_clicked();
+
+private slots:
+
+
 
 private:
     Ui::Widget *ui;
