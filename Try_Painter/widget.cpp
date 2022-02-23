@@ -22,37 +22,18 @@ Widget::Widget(QWidget *parent) :
 
 void Widget::paintEvent(QPaintEvent *)
 {
-    //构造画家对象，同时指定绘图设备
-    QPainter paint(this);
-
-    //构造画笔,构造画刷 注意借助提示+帮助文档选择合适的样式
-    QPen pen(Qt::darkGray, 3, Qt::DashLine, Qt::FlatCap);
-    QBrush brush(Qt::green, Qt::DiagCrossPattern);
-
-    //将画笔、画刷给画家
-    paint.setPen(pen);
-    paint.setBrush(brush);
-
-    //几何绘制
-    //画线
-    paint.drawLine(0, 0, 100, 100);
-    //画椭圆
-    paint.drawEllipse(100, 100, 70, 50);
-    //画矩形
-    paint.drawRect(20, 20, 50, 50);
-    paint.brush();
-
-    QPainter painter(this);
-    QPixmap pix = QPixmap(":/Image/Luffy.png");
-
-   //如果超出屏幕 从0开始
-    if(posX >= this->width())
-    {
-        posX = -pix.width();
-    }
-
-    painter.drawPixmap(posX,0,pix);
-
+    QPainter Painter1(this)  ;
+      int x0=111,y0=222,x1=333,y1=55; //赋值
+      float dy,dx,y,m,x;
+      dx=x1-x0;
+      dy=y1-y0;
+      m=dy/dx; //斜率
+      y=y0;
+      for(x=x0;x<=x1;x++) //画点
+      {
+     Painter1.drawPoint(x,int(y+0.5)); //四舍五入
+        y+=m;
+      }
 
 }
 Widget::~Widget()

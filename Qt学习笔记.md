@@ -578,7 +578,9 @@ python**数据分析可视化**
 
 ## 对象树
 
+**在创建QObject对象时，可以提供一个其父对象，我们创建的这个QObject对象会自动添加到其父对象的children()列表。**
 
+**当父对象析构的时候，这个列表中的所有对象也会被析构。（注意，这里的父对象并不是继承意义上的父类！）**
 
 ## 信号槽
 
@@ -600,15 +602,105 @@ python**数据分析可视化**
 
 
 
-
-
-
-
-
-
-
-
-
+```C++public:
+public:
+    MainWindow(QWidget *parent = nullptr);
+    ~MainWindow();
+    int menu;
+    int count;
+    int startX;
+    int startY;
+    int endX;
+    int endY;
+    //length必须是浮点数，不然整数除以整数变成整除了，斜率就会出问题
+    float length;
+    float x, y, dx, dy;
+    
+    
+        ui->setupUi(this);
+    //初始化鼠标位置和菜单项变量
+    menu = 0;
+    count = 0;
+    startX = 0;
+    startY = 0;
+    endX = 0;
+    endY = 0;
+    
+    
+    
+     QPainter painter(this);
+    if (menu == 1 && count == 2)
+    {
+        //判断哪个变量为增量
+        if(abs(endX - startX) > (endY - startY))
+            length = abs(endX - startX);
+        else
+            length = abs(endY - startY);
+        //设置增量，一个为1，一个为k
+        dx = (endX - startX) / length;
+        dy = (endY - startY) / length;
+        x = startX;
+        y = startY;
+        int i = 1;
+        //画直线
+        for(i; i < length; i++)
+        {
+          painter.drawPoint(int(x + 0.5), int(y + 0.5));
+          x += dx;
+          y += dy;
+        }
+    }
+    if (menu == 2 && count == 2)
+    {
+        int x = startX, y = startY;
+            int a = startY - endY;
+            int b = endX - startX;
+            int cx = (b >= 0 ? 1 : (b = -b, -1));
+            int cy = (a <= 0 ? 1 : (a = -a, -1));
+            painter.drawPoint(x, y);
+            int d, d1, d2;
+            if (-a <= b) // 斜率绝对值 <= 1
+            {
+                d = a + a + b;
+                d1 = a + a;
+                d2 = a + a + b + b;
+                while (x != endX)
+                {
+                    if (d < 0)
+                    {
+                        y += cy;
+                        d += d2;
+                    }
+                    else
+                    {
+                        d += d1;
+                    }
+                    x += cx;
+            painter.drawPoint(x, y);
+                }
+            }
+            else // 斜率绝对值 > 1
+            {
+                d = a + b + b;
+                d1 = b + b;
+                d2 = a + a + b + b;
+                if (d < 0)
+                {
+                    d += d1;
+                }
+                else
+                {
+                    x += cx;
+                    d += d2;
+                }
+                y += cy;
+            painter.drawPoint(x, y);
+            }
+    }
+    
+    
+    menu = 1;
+```
 
 
 
