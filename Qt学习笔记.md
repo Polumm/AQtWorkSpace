@@ -704,3 +704,11 @@ public:
 
 
 
+```
+<com.baidu.mapapi.map.MapView
+    android:id="@+id/bmapView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true">
+</com.baidu.mapapi.map.MapView>
+```

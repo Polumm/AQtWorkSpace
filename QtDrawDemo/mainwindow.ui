@@ -11,9 +11,43 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Computer Graphics Demo</string>
   </property>
-  <widget class="QWidget" name="centralwidget"/>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QWidget" name="widget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>550</x>
+      <y>10</y>
+      <width>211</width>
+      <height>181</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>TextLabel</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_2">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_3">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
@@ -25,19 +59,50 @@
    </property>
    <widget class="QMenu" name="menuDrawDemo">
     <property name="title">
-     <string>DrawDemo</string>
+     <string>Draw</string>
     </property>
     <widget class="QMenu" name="menuDrawLine">
      <property name="title">
       <string>DrawLine</string>
      </property>
      <addaction name="actionDDA"/>
-     <addaction name="action_MiddlePoint"/>
      <addaction name="action_Bresenham"/>
+     <addaction name="action_MPL"/>
+    </widget>
+    <widget class="QMenu" name="menu_DrawCircle">
+     <property name="title">
+      <string>DrawCircle</string>
+     </property>
+     <addaction name="actionMPC"/>
+     <addaction name="actionDDA_2"/>
+     <addaction name="actionBresenham"/>
     </widget>
     <addaction name="menuDrawLine"/>
+    <addaction name="menu_DrawCircle"/>
+   </widget>
+   <widget class="QMenu" name="menuInteractDemo">
+    <property name="title">
+     <string>Interact</string>
+    </property>
+    <addaction name="actionIdentifyObjects"/>
+   </widget>
+   <widget class="QMenu" name="menuFill_Algorithm">
+    <property name="title">
+     <string>Fill Algorithm</string>
+    </property>
+    <addaction name="actionBoundary_Fill_Algorithm"/>
+   </widget>
+   <widget class="QMenu" name="menuClipping">
+    <property name="title">
+     <string>Clipping</string>
+    </property>
+    <addaction name="actionCohen_Sutherland"/>
+    <addaction name="actionLiang_Barsky"/>
    </widget>
    <addaction name="menuDrawDemo"/>
+   <addaction name="menuInteractDemo"/>
+   <addaction name="menuFill_Algorithm"/>
+   <addaction name="menuClipping"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionDDA">
@@ -45,14 +110,49 @@
     <string>DDA</string>
    </property>
   </action>
-  <action name="action_MiddlePoint">
+  <action name="action_Bresenham">
+   <property name="text">
+    <string>Bresenham</string>
+   </property>
+  </action>
+  <action name="action_MPL">
    <property name="text">
     <string>MPL</string>
    </property>
   </action>
-  <action name="action_Bresenham">
+  <action name="actionMPC">
    <property name="text">
-    <string> Bresenham</string>
+    <string>MPC</string>
+   </property>
+  </action>
+  <action name="actionIdentifyObjects">
+   <property name="text">
+    <string>IdentifyObjects</string>
+   </property>
+  </action>
+  <action name="actionBoundary_Fill_Algorithm">
+   <property name="text">
+    <string>Boundary Fill Algorithm</string>
+   </property>
+  </action>
+  <action name="actionCohen_Sutherland">
+   <property name="text">
+    <string>Cohen-Sutherland</string>
+   </property>
+  </action>
+  <action name="actionDDA_2">
+   <property name="text">
+    <string>DDA</string>
+   </property>
+  </action>
+  <action name="actionBresenham">
+   <property name="text">
+    <string>Bresenham</string>
+   </property>
+  </action>
+  <action name="actionLiang_Barsky">
+   <property name="text">
+    <string>Liang-Barsky</string>
    </property>
   </action>
  </widget>
